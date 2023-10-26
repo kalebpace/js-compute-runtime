@@ -1,32 +1,32 @@
 /**
  * @group Web APIs
  */
-declare var self: typeof globalThis;
+export declare var self: typeof globalThis;
 
 /**
  * @group DOM Events
  */
-interface EventMap {
+export interface EventMap {
   "fetch": FetchEvent;
 }
 
 /**
  * @group DOM Events
  */
-interface EventListenerMap {
+export interface EventListenerMap {
   "fetch": FetchEventListener;
 }
 
 /**
  * @group DOM Events
  */
-interface FetchEventListener {
+export interface FetchEventListener {
   (this: typeof globalThis, event: FetchEvent): any
 }
 /**
  * @group DOM Events
  */
-declare var onfetch: FetchEventListener;
+export declare var onfetch: FetchEventListener;
 
 /**
  * This is a fetch specific implementation of [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), and is very similar to [handling FetchEvent from a Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/request).
@@ -34,7 +34,7 @@ declare var onfetch: FetchEventListener;
  * For Fastly Compute, this will be the entrypoint in handling your downstream request from your client.
  * @group DOM Events
  */
-declare function addEventListener<K extends keyof EventMap>(type: K, listener: EventListenerMap[K]): void;
+export declare function addEventListener<K extends keyof EventMap>(type: K, listener: EventListenerMap[K]): void;
 
 /**
  * @deprecated This has moved to {@link "fastly:backend".BackendConfiguration} - This global variable will be removed in the next major version.
@@ -132,7 +132,7 @@ declare class Backend {
  * A Fastly Compute specific implementation of [FetchEvent](https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/FetchEvent).
  * @group DOM Events
  */
-declare interface FetchEvent {
+export declare interface FetchEvent {
   /**
    * Information about the downstream client that made the request
    */
@@ -257,7 +257,7 @@ declare var CacheOverride: {
 /**
  * Information about the downstream client making the request to the Fastly Compute service.
  */
-declare interface ClientInfo {
+export declare interface ClientInfo {
   /**
    * A string representation of the IPv4 or IPv6 address of the downstream client.
    */
@@ -520,7 +520,7 @@ declare interface KVStoreEntry {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/URL | URL on MDN}
  * @group Web APIs
  */
-declare class URL {
+export declare class URL {
   constructor(url: string, base?: string | URL);
 
   get href(): string;
@@ -568,7 +568,7 @@ declare class URL {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams | URLSearchParams on MDN}
  * @group Web APIs
  */
-declare class URLSearchParams {
+export declare class URLSearchParams {
   constructor(
     init?:
       | ReadonlyArray<readonly [name: string, value: string]>
@@ -613,7 +613,7 @@ declare class URLSearchParams {
  * **Note**: Messages are prefixed with the respective log level, starting with an upper-case letter, e.g. `"Log: "`.
  * @group Console API
  */
-interface Console {
+export interface Console {
   assert(condition?: boolean, ...data: any[]): void;
   clear(): void;
   count(label?: string): void;
@@ -639,7 +639,7 @@ interface Console {
  * The global {@linkcode Console} instance
  * @group Console API
  */
-declare var console: Console;
+export declare var console: Console;
 
 /**
  * An implementation of the [WHATWG Encoding Standard](https://encoding.spec.whatwg.org/) `TextEncoder` API. All
@@ -655,7 +655,7 @@ declare var console: Console;
  * ```
  * @group Encoding API
  */
-declare class TextEncoder {
+export declare class TextEncoder {
   /**
    * Returns a newly constructed TextEncoder that will generate a byte stream with UTF-8 encoding.
    */
@@ -701,7 +701,7 @@ declare class TextEncoder {
  * in non-fatal mode.
  * @group Encoding API
  */
-declare class TextDecoder {
+export declare class TextDecoder {
   // TODO: We should throw a RangeError if supplied a `label` that we do not support
   constructor(label?: "unicode-1-1-utf-8" | "utf-8" | "utf8");
   decode(input?: ArrayBuffer | ArrayBufferView): string;
@@ -851,7 +851,7 @@ declare var fastly: Fastly;
  *
  * @group Compression Streams APIs
  */
-declare class CompressionStream {
+export declare class CompressionStream {
   /**
    * Creates a new `CompressionStream` object which compresses a stream of data.
    * 
@@ -905,7 +905,7 @@ declare class CompressionStream {
  *
  * @group Compression Streams APIs
  */
-declare class DecompressionStream {
+export declare class DecompressionStream {
   /**
    * Creates a new `DecompressionStream` object which decompresses a stream of
    * data.
@@ -971,7 +971,7 @@ and limitations under the License.
  * ({@linkcode Request}, and {@linkcode Response})
  * @group Fetch API
  */
-declare type BodyInit = ReadableStream | ArrayBufferView | ArrayBuffer | URLSearchParams | string;
+export declare type BodyInit = ReadableStream | ArrayBufferView | ArrayBuffer | URLSearchParams | string;
 
 /**
  * Body for Fetch HTTP Requests and Responses
@@ -979,7 +979,7 @@ declare type BodyInit = ReadableStream | ArrayBufferView | ArrayBuffer | URLSear
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Body | Body on MDN}
  * @group Fetch API
  */
-declare interface Body {
+export declare interface Body {
   readonly body: ReadableStream<Uint8Array> | null;
   readonly bodyUsed: boolean;
   arrayBuffer(): Promise<ArrayBuffer>;
@@ -996,7 +996,7 @@ declare interface Body {
  * Usually this a URL to the resource you are requesting.
  * @group Fetch API
  */
-declare type RequestInfo = Request | string;
+export declare type RequestInfo = Request | string;
 
 /**
  * Constructor parameter for
@@ -1006,7 +1006,7 @@ declare type RequestInfo = Request | string;
  * Fastly specific information.
  * @group Fetch API
  */
-declare interface RequestInit {
+export declare interface RequestInit {
   /** A BodyInit object or null to set request's body. */
   body?: BodyInit | null;
   // /** A string indicating how the request will interact with the browser's cache to set request's cache. */
@@ -1051,7 +1051,7 @@ declare interface RequestInit {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Request | Request on MDN}
  * @group Fetch API
  */
-interface Request extends Body {
+export interface Request extends Body {
   // /** Returns the cache mode associated with request, which is a string indicating how the request will interact with the browser's cache when fetching. */
   // readonly cache: RequestCache;
   // /** Returns the credentials mode associated with request, which is a string indicating whether credentials will be sent with the request always, never, or only when sent to a same-origin URL. */
@@ -1091,7 +1091,7 @@ interface Request extends Body {
 /**
  * @group Fetch API
  */
-declare var Request: {
+export declare var Request: {
   prototype: Request;
   new(input: RequestInfo | URL, init?: RequestInit): Request;
 };
@@ -1101,7 +1101,7 @@ declare var Request: {
  * This contains information to send along with the response.
  * @group Fetch API
  */
-declare interface ResponseInit {
+export declare interface ResponseInit {
   headers?: HeadersInit;
   status?: number;
   statusText?: string;
@@ -1115,7 +1115,7 @@ declare interface ResponseInit {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Response | Response on MDN}
  * @group Fetch API
  */
-interface Response extends Body {
+export interface Response extends Body {
   readonly headers: Headers;
   readonly ok: boolean;
   // readonly redirected: boolean;
@@ -1129,7 +1129,7 @@ interface Response extends Body {
 /**
  * @group Fetch API
  */
-declare var Response: {
+export declare var Response: {
   prototype: Response;
   new(body?: BodyInit | null, init?: ResponseInit): Response;
   // error(): Response;
@@ -1140,67 +1140,67 @@ declare var Response: {
 /**
  * @group Streams API
  */
-type ReadableStreamReader<T> = ReadableStreamDefaultReader<T>;
+export type ReadableStreamReader<T> = ReadableStreamDefaultReader<T>;
 // type ReadableStreamReader<T> = ReadableStreamDefaultReader<T> | ReadableStreamBYOBReader;
 /**
  * @group Streams API
  */
-type ReadableStreamController<T> = ReadableStreamDefaultController<T>;
+export type ReadableStreamController<T> = ReadableStreamDefaultController<T>;
 // type ReadableStreamController<T> = ReadableStreamDefaultController<T> | ReadableByteStreamController;
 
 /**
  * @group Streams API
  */
-interface UnderlyingSinkAbortCallback {
+export interface UnderlyingSinkAbortCallback {
   (reason?: any): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSinkCloseCallback {
+export interface UnderlyingSinkCloseCallback {
   (): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSinkStartCallback {
+export interface UnderlyingSinkStartCallback {
   (controller: WritableStreamDefaultController): any;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSinkWriteCallback<W> {
+export interface UnderlyingSinkWriteCallback<W> {
   (chunk: W, controller: WritableStreamDefaultController): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSourceCancelCallback {
+export interface UnderlyingSourceCancelCallback {
   (reason?: any): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSourcePullCallback<R> {
+export interface UnderlyingSourcePullCallback<R> {
   (controller: ReadableStreamController<R>): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSourceStartCallback<R> {
+export interface UnderlyingSourceStartCallback<R> {
   (controller: ReadableStreamController<R>): any;
 }
 
 /**
  * @group Streams API
  */
-interface UnderlyingSink<W = any> {
+export interface UnderlyingSink<W = any> {
   abort?: UnderlyingSinkAbortCallback;
   close?: UnderlyingSinkCloseCallback;
   start?: UnderlyingSinkStartCallback;
@@ -1211,7 +1211,7 @@ interface UnderlyingSink<W = any> {
 /**
  * @group Streams API
  */
-interface UnderlyingSource<R = any> {
+export interface UnderlyingSource<R = any> {
   autoAllocateChunkSize?: number;
   cancel?: UnderlyingSourceCancelCallback;
   pull?: UnderlyingSourcePullCallback<R>;
@@ -1222,12 +1222,12 @@ interface UnderlyingSource<R = any> {
 /**
  * @group Streams API
  */
-type ReadableStreamType = "bytes";
+export type ReadableStreamType = "bytes";
 
 /**
  * @group Streams API
  */
-interface StreamPipeOptions {
+export interface StreamPipeOptions {
   preventAbort?: boolean;
   preventCancel?: boolean;
   /**
@@ -1254,14 +1254,14 @@ interface StreamPipeOptions {
 /**
  * @group Streams API
  */
-interface QueuingStrategySize<T = any> {
+export interface QueuingStrategySize<T = any> {
   (chunk: T): number;
 }
 
 /**
  * @group Streams API
  */
-interface QueuingStrategy<T = any> {
+export interface QueuingStrategy<T = any> {
   highWaterMark?: number;
   size?: QueuingStrategySize<T>;
 }
@@ -1269,7 +1269,7 @@ interface QueuingStrategy<T = any> {
 /**
  * @group Streams API
  */
-interface QueuingStrategyInit {
+export interface QueuingStrategyInit {
   /**
    * Creates a new ByteLengthQueuingStrategy with the provided high water mark.
    *
@@ -1281,7 +1281,7 @@ interface QueuingStrategyInit {
 /**
  * @group Streams API
  */
-interface ReadableStreamDefaultReadDoneResult {
+export interface ReadableStreamDefaultReadDoneResult {
   done: true;
   value?: undefined;
 }
@@ -1289,7 +1289,7 @@ interface ReadableStreamDefaultReadDoneResult {
 /**
  * @group Streams API
  */
-interface ReadableStreamDefaultReadValueResult<T> {
+export interface ReadableStreamDefaultReadValueResult<T> {
   done: false;
   value: T;
 }
@@ -1297,12 +1297,12 @@ interface ReadableStreamDefaultReadValueResult<T> {
 /**
  * @group Streams API
  */
-type ReadableStreamDefaultReadResult<T> = ReadableStreamDefaultReadValueResult<T> | ReadableStreamDefaultReadDoneResult;
+export type ReadableStreamDefaultReadResult<T> = ReadableStreamDefaultReadValueResult<T> | ReadableStreamDefaultReadDoneResult;
 
 /**
  * @group Streams API
  */
-interface ReadableWritablePair<R = any, W = any> {
+export interface ReadableWritablePair<R = any, W = any> {
   readable: ReadableStream<R>;
   /**
    * Provides a convenient, chainable way of piping this readable stream through a transform stream (or any other \{ writable, readable \} pair). It simply pipes the stream into the writable side of the supplied pair, and returns the readable side for further use.
@@ -1316,7 +1316,7 @@ interface ReadableWritablePair<R = any, W = any> {
  * This Streams API interface represents a readable stream of byte data. The Fetch API offers a concrete instance of a ReadableStream through the body property of a Response object.
  * @group Streams API
  */
-interface ReadableStream<R = any> {
+export interface ReadableStream<R = any> {
   readonly locked: boolean;
   cancel(reason?: any): Promise<void>;
   getReader(): ReadableStreamDefaultReader<R>;
@@ -1331,7 +1331,7 @@ interface ReadableStream<R = any> {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream | ReadableStream on MDN}
  * @group Streams API
  */
-declare var ReadableStream: {
+export declare var ReadableStream: {
   prototype: ReadableStream;
   new <R = any>(underlyingSource?: UnderlyingSource<R>, strategy?: QueuingStrategy<R>): ReadableStream<R>;
 };
@@ -1339,7 +1339,7 @@ declare var ReadableStream: {
 /**
  * @group Streams API
  */
-interface ReadableStreamDefaultController<R = any> {
+export interface ReadableStreamDefaultController<R = any> {
   readonly desiredSize: number | null;
   close(): void;
   enqueue(chunk: R): void;
@@ -1349,7 +1349,7 @@ interface ReadableStreamDefaultController<R = any> {
 /**
  * @group Streams API
  */
-declare var ReadableStreamDefaultController: {
+export declare var ReadableStreamDefaultController: {
   prototype: ReadableStreamDefaultController;
   new(): ReadableStreamDefaultController;
 };
@@ -1357,7 +1357,7 @@ declare var ReadableStreamDefaultController: {
 /**
  * @group Streams API
  */
-interface ReadableStreamDefaultReader<R = any> extends ReadableStreamGenericReader {
+export interface ReadableStreamDefaultReader<R = any> extends ReadableStreamGenericReader {
   read(): Promise<ReadableStreamDefaultReadResult<R>>;
   releaseLock(): void;
 }
@@ -1365,7 +1365,7 @@ interface ReadableStreamDefaultReader<R = any> extends ReadableStreamGenericRead
 /**
  * @group Streams API
  */
-declare var ReadableStreamDefaultReader: {
+export declare var ReadableStreamDefaultReader: {
   prototype: ReadableStreamDefaultReader;
   new <R = any>(stream: ReadableStream<R>): ReadableStreamDefaultReader<R>;
 };
@@ -1373,7 +1373,7 @@ declare var ReadableStreamDefaultReader: {
 /**
  * @group Streams API
  */
-interface ReadableStreamGenericReader {
+export interface ReadableStreamGenericReader {
   readonly closed: Promise<undefined>;
   cancel(reason?: any): Promise<void>;
 }
@@ -1382,7 +1382,7 @@ interface ReadableStreamGenericReader {
  * This Streams API interface provides a standard abstraction for writing streaming data to a destination, known as a sink. This object comes with built-in backpressure and queuing.
  * @group Streams API
  */
-interface WritableStream<W = any> {
+export interface WritableStream<W = any> {
   readonly locked: boolean;
   abort(reason?: any): Promise<void>;
   getWriter(): WritableStreamDefaultWriter<W>;
@@ -1394,7 +1394,7 @@ interface WritableStream<W = any> {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WritableStream | WritableStream on MDN}
  * @group Streams API
  */
-declare var WritableStream: {
+export declare var WritableStream: {
   prototype: WritableStream;
   new <W = any>(underlyingSink?: UnderlyingSink<W>, strategy?: QueuingStrategy<W>): WritableStream<W>;
 };
@@ -1403,14 +1403,14 @@ declare var WritableStream: {
  * This Streams API interface represents a controller allowing control of a WritableStream's state. When constructing a WritableStream, the underlying sink is given a corresponding WritableStreamDefaultController instance to manipulate.
  * @group Streams API
  */
-interface WritableStreamDefaultController {
+export interface WritableStreamDefaultController {
   error(e?: any): void;
 }
 
 /**
  * @group Streams API
  */
-declare var WritableStreamDefaultController: {
+export declare var WritableStreamDefaultController: {
   prototype: WritableStreamDefaultController;
   new(): WritableStreamDefaultController;
 };
@@ -1419,7 +1419,7 @@ declare var WritableStreamDefaultController: {
  * This Streams API interface is the object returned by WritableStream.getWriter() and once created locks the < writer to the WritableStream ensuring that no other streams can write to the underlying sink.
  * @group Streams API
  */
-interface WritableStreamDefaultWriter<W = any> {
+export interface WritableStreamDefaultWriter<W = any> {
   readonly closed: Promise<undefined>;
   readonly desiredSize: number | null;
   readonly ready: Promise<undefined>;
@@ -1432,7 +1432,7 @@ interface WritableStreamDefaultWriter<W = any> {
 /**
  * @group Streams API
  */
-declare var WritableStreamDefaultWriter: {
+export declare var WritableStreamDefaultWriter: {
   prototype: WritableStreamDefaultWriter;
   new <W = any>(stream: WritableStream<W>): WritableStreamDefaultWriter<W>;
 };
@@ -1440,7 +1440,7 @@ declare var WritableStreamDefaultWriter: {
 /**
  * @group Streams API
  */
-interface TransformStream<I = any, O = any> {
+export interface TransformStream<I = any, O = any> {
   readonly readable: ReadableStream<O>;
   readonly writable: WritableStream<I>;
 }
@@ -1452,7 +1452,7 @@ interface TransformStream<I = any, O = any> {
  * @group Streams API
  */
 
-declare var TransformStream: {
+export declare var TransformStream: {
   prototype: TransformStream;
   new <I = any, O = any>(transformer?: Transformer<I, O>, writableStrategy?: QueuingStrategy<I>, readableStrategy?: QueuingStrategy<O>): TransformStream<I, O>;
 };
@@ -1460,7 +1460,7 @@ declare var TransformStream: {
 /**
  * @group Streams API
  */
-interface TransformStreamDefaultController<O = any> {
+export interface TransformStreamDefaultController<O = any> {
   readonly desiredSize: number | null;
   enqueue(chunk?: O): void;
   error(reason?: any): void;
@@ -1470,7 +1470,7 @@ interface TransformStreamDefaultController<O = any> {
 /**
  * @group Streams API
  */
-declare var TransformStreamDefaultController: {
+export declare var TransformStreamDefaultController: {
   prototype: TransformStreamDefaultController;
   new(): TransformStreamDefaultController;
 };
@@ -1478,7 +1478,7 @@ declare var TransformStreamDefaultController: {
 /**
  * @group Streams API
  */
-interface Transformer<I = any, O = any> {
+export interface Transformer<I = any, O = any> {
   flush?: TransformerFlushCallback<O>;
   readableType?: undefined;
   start?: TransformerStartCallback<O>;
@@ -1489,28 +1489,28 @@ interface Transformer<I = any, O = any> {
 /**
  * @group Streams API
  */
-interface TransformerFlushCallback<O> {
+export interface TransformerFlushCallback<O> {
   (controller: TransformStreamDefaultController<O>): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface TransformerStartCallback<O> {
+export interface TransformerStartCallback<O> {
   (controller: TransformStreamDefaultController<O>): void | PromiseLike<void>;
 }
 
 /**
  * @group Streams API
  */
-interface TransformerTransformCallback<I, O> {
+export interface TransformerTransformCallback<I, O> {
   (chunk: I, controller: TransformStreamDefaultController<O>): void | PromiseLike<void>;
 }
 
 /**
  * @group Fetch API
  */
-type HeadersInit = Headers | string[][] | Record<string, string>;
+export type HeadersInit = Headers | string[][] | Record<string, string>;
 
 /**
  * The Headers class as [specified by WHATWG](https://fetch.spec.whatwg.org/#headers-class)
@@ -1518,7 +1518,7 @@ type HeadersInit = Headers | string[][] | Record<string, string>;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Headers | Headers on MDN}
  * @group Fetch API
  */
-interface Headers {
+export interface Headers {
   append(name: string, value: string): void;
   delete(name: string): void;
   get(name: string): string | null;
@@ -1535,7 +1535,7 @@ interface Headers {
 /**
  * @group Fetch API
  */
-declare var Headers: {
+export declare var Headers: {
   prototype: Headers;
   new(init?: HeadersInit): Headers;
 };
@@ -1549,7 +1549,7 @@ declare var Headers: {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/atob | atob on MDN}
  * @group Encoding API
  */
-declare function atob(data: string): string;
+export declare function atob(data: string): string;
 
 /**
  *  The btoa() method creates a Base64-encoded ASCII string from a binary string (i.e., a string in which each character in the string is treated as a byte of binary data). 
@@ -1559,7 +1559,7 @@ declare function atob(data: string): string;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/btoa | btoa on MDN}
  * @group Encoding API
  */
-declare function btoa(data: string): string;
+export declare function btoa(data: string): string;
 
 /**
  * The setTimeout() method sets a timer which calls a function once the timer expires.
@@ -1572,7 +1572,7 @@ declare function btoa(data: string): string;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/setTimeout | setTimeout on MDN}
  * @group Timers
  */
-declare function setTimeout<TArgs extends any[]>(callback: (...args: TArgs) => void, delay?: number, ...args: TArgs): number;
+export declare function setTimeout<TArgs extends any[]>(callback: (...args: TArgs) => void, delay?: number, ...args: TArgs): number;
 
 /**
  * The clearTimeout() method cancels a timeout previously established by calling setTimeout(). If the parameter provided does not identify a previously established action, this method does nothing.
@@ -1581,7 +1581,7 @@ declare function setTimeout<TArgs extends any[]>(callback: (...args: TArgs) => v
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout | clearTimeout on MDN}
  * @group Timers
  */
-declare function clearTimeout(timeoutID?: number): void;
+export declare function clearTimeout(timeoutID?: number): void;
 
 /**
  * The setInterval() method repeatedly calls a function, with a fixed time delay between each call.
@@ -1595,7 +1595,7 @@ declare function clearTimeout(timeoutID?: number): void;
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/setInterval | setInterval on MDN}
  * @group Timers
  */
-declare function setInterval<TArgs extends any[]>(callback: (...args: TArgs) => void, delay?: number, ...args: TArgs): number;
+export declare function setInterval<TArgs extends any[]>(callback: (...args: TArgs) => void, delay?: number, ...args: TArgs): number;
 
 /**
  * The clearInterval() method cancels a timed, repeating action which was previously established by a call to setInterval(). If the parameter provided does not identify a previously established action, this method does nothing.
@@ -1604,7 +1604,7 @@ declare function setInterval<TArgs extends any[]>(callback: (...args: TArgs) => 
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/clearInterval | clearInterval on MDN}
  * @group Timers
  */
-declare function clearInterval(intervalID?: number): void;
+export declare function clearInterval(intervalID?: number): void;
 
 /**
  * Fetch resources from backends.
@@ -1621,42 +1621,42 @@ declare function clearInterval(intervalID?: number): void;
  * @param init - An object containing settings to apply to the request
  * @group Fetch API
  */
-declare function fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
+export declare function fetch(input: RequestInfo, init?: RequestInit): Promise<Response>;
 
 /**
  * @group Scheduling
  */
-interface VoidFunction {
+export interface VoidFunction {
   (): void;
 }
 
 /**
  * @group Scheduling
  */
-declare function queueMicrotask(callback: VoidFunction): void;
+export declare function queueMicrotask(callback: VoidFunction): void;
 
 /**
  * @group DOM APIs
  */
-declare function structuredClone(value: any, options?: StructuredSerializeOptions): any;
+export declare function structuredClone(value: any, options?: StructuredSerializeOptions): any;
 
 /**
  * @group DOM APIs
  */
-interface StructuredSerializeOptions {
+export interface StructuredSerializeOptions {
   transfer?: Transferable[];
 }
 
 /**
  * @group DOM APIs
  */
-type Transferable = ArrayBuffer;
+export type Transferable = ArrayBuffer;
 // type Transferable = ArrayBuffer | MessagePort | ImageBitmap;
 
 /**
  * @group Web APIs
  */
-interface WorkerLocation {
+export interface WorkerLocation {
   readonly hash: string;
   readonly host: string;
   readonly hostname: string;
@@ -1675,7 +1675,7 @@ interface WorkerLocation {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/WorkerLocation | WorkerLocation on MDN}
  * @group Web APIs
  */
-declare var WorkerLocation: {
+export declare var WorkerLocation: {
   prototype: WorkerLocation;
   new(): WorkerLocation;
 };
@@ -1683,17 +1683,17 @@ declare var WorkerLocation: {
 /**
  * @group Web APIs
  */
-declare var location: WorkerLocation;
+export declare var location: WorkerLocation;
 
-interface Algorithm {
+export interface Algorithm {
   name: string;
 }
 
-type AlgorithmIdentifier = Algorithm | string;
+export type AlgorithmIdentifier = Algorithm | string;
 
-type BufferSource = ArrayBufferView | ArrayBuffer;
+export type BufferSource = ArrayBufferView | ArrayBuffer;
 
-declare class SubtleCrypto {
+export declare class SubtleCrypto {
   constructor();
   // decrypt(algorithm: AlgorithmIdentifier | RsaOaepParams | AesCtrParams | AesCbcParams | AesGcmParams, key: CryptoKey, data: BufferSource): Promise<ArrayBuffer>;
   // deriveBits(algorithm: AlgorithmIdentifier | EcdhKeyDeriveParams | HkdfParams | Pbkdf2Params, baseKey: CryptoKey, length: number): Promise<ArrayBuffer>;
@@ -1715,7 +1715,7 @@ declare class SubtleCrypto {
       | RsaHashedImportParams
       // | EcKeyImportParams
       | HmacImportParams
-      // | AesKeyAlgorithm
+    // | AesKeyAlgorithm
     , extractable: boolean, keyUsages: KeyUsage[]): Promise<CryptoKey>;
   // sign(algorithm: AlgorithmIdentifier | RsaPssParams | EcdsaParams, key: CryptoKey, data: BufferSource): Promise<ArrayBuffer>;
   sign(algorithm: AlgorithmIdentifier, key: CryptoKey, data: BufferSource): Promise<ArrayBuffer>;
@@ -1725,17 +1725,17 @@ declare class SubtleCrypto {
   // wrapKey(format: KeyFormat, key: CryptoKey, wrappingKey: CryptoKey, wrapAlgorithm: AlgorithmIdentifier | RsaOaepParams | AesCtrParams | AesCbcParams | AesGcmParams): Promise<ArrayBuffer>;
 }
 
-interface HmacImportParams extends Algorithm {
+export interface HmacImportParams extends Algorithm {
   hash: HashAlgorithmIdentifier;
   length?: number;
 }
 
-interface RsaHashedImportParams extends Algorithm {
+export interface RsaHashedImportParams extends Algorithm {
   hash: HashAlgorithmIdentifier;
 }
-type HashAlgorithmIdentifier = AlgorithmIdentifier;
+export type HashAlgorithmIdentifier = AlgorithmIdentifier;
 
-interface JsonWebKey {
+export interface JsonWebKey {
   alg?: string;
   crv?: string;
   d?: string;
@@ -1756,7 +1756,7 @@ interface JsonWebKey {
   y?: string;
 }
 
-interface RsaOtherPrimesInfo {
+export interface RsaOtherPrimesInfo {
   d?: string;
   r?: string;
   t?: string;
@@ -1768,7 +1768,7 @@ interface RsaOtherPrimesInfo {
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Crypto | Crypto on MDN}
  * @group Web Crypto APIs
  */
-interface Crypto {
+export interface Crypto {
   readonly subtle: SubtleCrypto;
   getRandomValues<T extends ArrayBufferView | null>(array: T): T;
   randomUUID(): string;
@@ -1777,7 +1777,7 @@ interface Crypto {
 /**
  * @group Web Crypto APIs
  */
-declare var Crypto: {
+export declare var Crypto: {
   prototype: Crypto;
   new(): Crypto;
 };
@@ -1785,7 +1785,7 @@ declare var Crypto: {
 /**
  * @group Web Crypto APIs
  */
-declare var crypto: Crypto;
+export declare var crypto: Crypto;
 
 /**
  * The CryptoKey dictionary of the Web Crypto API represents a cryptographic key.
@@ -1793,7 +1793,7 @@ declare var crypto: Crypto;
  *
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/CryptoKey)
  */
-interface CryptoKey {
+export interface CryptoKey {
   /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/CryptoKey/algorithm) */
   readonly algorithm: KeyAlgorithm;
   /** [MDN Reference](https://developer.mozilla.org/docs/Web/API/CryptoKey/extractable) */
@@ -1804,20 +1804,20 @@ interface CryptoKey {
   readonly usages: KeyUsage[];
 }
 
-declare var CryptoKey: {
+export declare var CryptoKey: {
   prototype: CryptoKey;
   new(): CryptoKey;
 };
 
 
-interface KeyAlgorithm {
+export interface KeyAlgorithm {
   name: string;
 }
 
-type KeyFormat =
+export type KeyFormat =
   "jwk"
   // | "pkcs8"
   | "raw"
-  // | "spki";
-type KeyType = "private" | "public" | "secret";
-type KeyUsage = "decrypt" | "deriveBits" | "deriveKey" | "encrypt" | "sign" | "unwrapKey" | "verify" | "wrapKey";
+// | "spki";
+export type KeyType = "private" | "public" | "secret";
+export type KeyUsage = "decrypt" | "deriveBits" | "deriveKey" | "encrypt" | "sign" | "unwrapKey" | "verify" | "wrapKey";
